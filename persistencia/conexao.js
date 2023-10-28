@@ -1,11 +1,11 @@
-const conexao = {
-    host: 'localhost',
-    // port: 5433,
-    port: 5432,
-    database: 'trainer_squad',
-    user: 'postgres',
-    // password:'123456'
-    password:'12345'
-}
+const { Pool } = require('pg');
 
-module.exports = {conexao}
+const pool = new Pool({
+  user: 'nysglxqx',
+  host: 'isabelle.db.elephantsql.com (isabelle-01)',
+  database: 'nysglxqx',
+  password: 'Ef4aHDtLE5grcVUhtXLez7yjz7PONYGtW',
+  //port: 7248,
+});
+
+module.exports = { pool };
