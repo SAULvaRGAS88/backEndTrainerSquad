@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "start": "node app.js",
-=======
     "start": "npx nodemon app.js",
->>>>>>> devPaola
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
