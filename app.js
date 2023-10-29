@@ -2,21 +2,13 @@ const express = require('express')
 const rotaPersonal = require('./rota/personal_rota')
 const rotaTreino = require('./rota/treino_rota')
 const rotaAvaliacao = require('./rota/avaliacao_rota')
-<<<<<<< HEAD
-
-//
-=======
 const cors = require('cors');
 require("dotenv").config()
 
->>>>>>> devPaola
 const rotaAluno = require('./rota/aluno_rota')
 const rotaPagamento = require('./rota/pagamento_rota')
 
 const app = express()
-<<<<<<< HEAD
-const port = 5000
-=======
 const port = process.env.PORT || 5000;
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -59,20 +51,11 @@ app.delete("/usuario/:id", async (req, res)=>{
     await db.deletarUsuario(req.params.id)
     res.sendStatus(204)
 })
->>>>>>> devPaola
 
 app.use((_req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, PATCH, GET, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', '*');
-<<<<<<< HEAD
-  
-    next();
-});
-
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-=======
 
     next();
 });
@@ -80,7 +63,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true}));  
->>>>>>> devPaola
 
 app.use("/api/personal", rotaPersonal);
 app.use("/api/treino", rotaTreino);
