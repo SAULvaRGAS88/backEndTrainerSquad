@@ -1,20 +1,19 @@
-const { Client } = require('pg')
+const { pool } = require('./conexao')
 const { conexao } = require('./conexao')
 
-// Iniciando CRUD
-
-// Create
 async function addUsuario(usuario) {
-    const client = new Client(conexao)
-    client.connect()
+
+    const client = await pool.connect()
+    console.log('CRIOU PUM!!!!!!!!!!!!!!!!!!!!!!!')
 
     try {
         const sql = `INSERT INTO usuario(nome, email, senha) VALUES($1, $2, $3) RETURNING *`
         const values = [usuario.nome, usuario.email, usuario.senha]
         const usuarios = await client.query(sql, values)
 
-        await client.end()
-        return usuarios.rows[0]
+      console.log("teste", usuarios.rows[0])  
+      client.release()
+
     } catch (error) { throw error }
 }
 

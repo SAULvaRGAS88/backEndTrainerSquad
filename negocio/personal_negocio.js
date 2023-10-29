@@ -36,6 +36,7 @@ async function buscarUsuario() {
         if (usuario.length == 0) {
             const erro = new Error()
             erro.message = "Não há usuários cadastrados."
+            console.error('errou>>>>>>>>>>>')
             erro.status = 404
             throw erro
         }
