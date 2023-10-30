@@ -17,6 +17,7 @@ const db = require("./db")
 app.use(express.json()) //configuração pra receber dados json
 
 app.get("/", ( req, res)=>{
+    console.log('Recebida solicitação GET para /usuarios');
     res.json({
         message: "Funcionanso, PUM!!!!!!!!!!!!!!!!!!!!!!!"
     })
@@ -25,12 +26,12 @@ app.get("/", ( req, res)=>{
 // Busca por id
 app.get("/usuario/:id", async (req, res)=>{
     const usuario = await db.selecionarUsuario(req.params.id)
-    res.json(usuario)
+    res.json(usuario) 
 })
 
 // Busca geral
-app.get("/usuarios", async (req, res)=>{
-    const usuarios = await db.selecionarUsuarios()
+app.get("/usuarios", async (req, res)=>{ 
+    const usuarios = await db.selecionarUsuarios() 
     res.json(usuarios)
 })
 
