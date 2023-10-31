@@ -1,22 +1,29 @@
 const persistencia = require('../persistencia/pagamento_persistencia')
+const aluno = require('../persistencia/aluno_persistencia')
 
 // Iniciando CRUD
 
 // Create
-// PAGAMENTO
-
 async function addPagamento(idAluno, pagamento) {
-    if (pagamento && idAluno && pagamento.dt_pagamento && pagamento.status && pagamento.valor) {
-        try {
-            const pagamentos = await persistencia.addPagamento(idAluno, pagamento)
-            return pagamentos
-        } catch (error) { throw error }
+    const id = await aluno.buscarAlunoPorId(idAluno)
+    if (!id) {
+        throw ({status: 404, message: "ID não encontrado"})
     } else {
-        const erro = new Error()
-        erro.message = "Todos os campos são obrigatórios."
-        erro.status = 400
-        throw erro
+        if (pagamento && idAluno && pagamento.dt_pagamento && pagamento.status && pagamento.valor) {
+            try {
+                const pagamentos = await persistencia.addPagamento(idAluno, pagamento)
+                return pagamentos
+            } catch (error) { 
+                throw error 
+            }
+        } else {
+            const erro = new Error()
+            erro.message = "Todos os campos são obrigatórios."
+            erro.status = 400
+            throw erro
+        }
     }
+
 }
 
 
@@ -54,7 +61,7 @@ async function buscarPagamentoPorId(id) {
 // Update
 async function atualizarPagamento(id, pagamentos) {
     if (pagamentos && pagamentos.dt_pagamento && pagamentos.status && pagamentos.valor) {
-        const pagamentoAtualizado = await persistencia.atualizarAluno(id, pagamentos)
+        const pagamentoAtualizado = await persistencia.atualizarPagamento(id, pagamentos)
 
         if (!pagamentoAtualizado) {
             let erro = new Error()

@@ -36,7 +36,6 @@ async function buscarUsuario() {
         if (usuario.length == 0) {
             const erro = new Error()
             erro.message = "Não há usuários cadastrados."
-            console.error('errou>>>>>>>>>>>')
             erro.status = 404
             throw erro
         }
@@ -66,7 +65,7 @@ async function buscarUsuarioPorEmail(email) {
 
         if (!emailUsuario) {
             const erro = new Error()
-            erro.message = "Nome não encontrado."
+            erro.message = "E-mail não encontrado."
             erro.status = 404
             throw erro
         }

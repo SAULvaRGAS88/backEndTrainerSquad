@@ -6,7 +6,7 @@ const negocio = require('../negocio/aluno_negocio')
 
 async function addAluno(req, res) {
     const idUsuario = req.params.id
-    const aluno = req.body
+    const aluno = req.body  
 
     try {
         const alunoAdd = await negocio.addAluno(idUsuario, aluno)
@@ -15,7 +15,11 @@ async function addAluno(req, res) {
         if (error.status) {
             res.status(error.status).json(error)
         } else {
+<<<<<<< HEAD
             res.status(402).json({message: "Erro interno!"})
+=======
+            res.status(500).json({message: "Erro interno!"})
+>>>>>>> devPaola
         }
     }
 }
@@ -108,6 +112,7 @@ async function atualizarAluno(req, res) {
             res.status(error.status).json(error)
         } else {
             res.status(500).json({message: "Erro interno!"})
+            console.log(error)
         }
     }
 }

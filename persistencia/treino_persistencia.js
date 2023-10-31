@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // const { Client } = require('pg')
 // const { conexao } = require('./conexao')
+=======
+>>>>>>> devPaola
 const connect = require("../db");
 
 async function addTreino(idAluno, treino) {

@@ -1,4 +1,5 @@
 const connect = require("../db");
+<<<<<<< HEAD
 
 // async function selecionarUsuarios(){
 
@@ -9,7 +10,10 @@ const connect = require("../db");
  
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+=======
+>>>>>>> devPaola
 
+// Create
 async function addUsuario(usuario) {
     const client = await connect()
    
@@ -18,8 +22,9 @@ async function addUsuario(usuario) {
         const values = [usuario.nome, usuario.email, usuario.senha]
         const usuarios = await client.query(sql, values)
 
-      console.log("teste", usuarios.rows[0])  
-      client.release()
+        // console.log("teste", usuarios.rows[0])  
+        client.release()
+        return usuarios.rows[0]
 
     } catch (error) { throw error }
 }
