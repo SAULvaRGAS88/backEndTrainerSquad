@@ -5,15 +5,17 @@ const persistencia = require('../persistencia/aluno_persistencia')
 // Create
 
 async function addAluno(idUsuario, aluno) {
-    if (aluno && aluno.sexo && aluno.nome && aluno.cpf && aluno.dt_nascimento && aluno.telefone && aluno.email && aluno.status
+    const alunoBuscadoPorCpf = await persistencia.buscarAlunoPorCpf(aluno.cpf);
+    if (alunoBuscadoPorCpf) {
+        throw ({status: 400, message: "Aluno já cadastrado"})
+    }
+
+    if (aluno && aluno.sexo && aluno.nome && aluno.cpf && aluno.dt_nascimento && aluno.telefone && aluno.email
         && aluno.plano && idUsuario) {
-            const alunoBuscadoPorCpf = await persistencia.buscarAlunoPorCpf(aluno.cpf);
-            if(!alunoBuscadoPorCpf) {
                 try {
                     const alunoAdd = await persistencia.addAluno(idUsuario, aluno)
                     return alunoAdd                    
                 } catch (error) { throw  error }
-        } else { throw { id: 402, mensagem: "Aluno já cadastrado!"} }
     } else {
             const erro = new Error()
             erro.message = "Todos os campos são obrigatórios."
@@ -42,7 +44,7 @@ async function buscarAlunoPorNome(nome) {
     try {
         const nomeAluno = await persistencia.buscarAlunoPorNome(nome)
 
-        if (!nomeAluno) {
+        if (nomeAluno.length == 0) {
             const erro = new Error()
             erro.message = "Nome não encontrado."
             erro.status = 404

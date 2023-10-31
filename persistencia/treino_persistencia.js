@@ -1,9 +1,7 @@
-const { Client } = require('pg')
-const { conexao } = require('./conexao')
+const connect = require("../db");
 
 async function addTreino(idAluno, treino) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `INSERT INTO treino(obs, carga, serie, exercicio, tipo, repeticao, idAluno)
@@ -18,8 +16,7 @@ async function addTreino(idAluno, treino) {
 }
 
 async function buscarTreino() {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM treino ORDER BY id`
@@ -31,8 +28,7 @@ async function buscarTreino() {
 }
 
 async function buscarTreinoAluno(idAluno) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT aluno.nome, treino.* FROM treino INNER JOIN aluno ON aluno.id = treino.idAluno WHERE treino.idAluno = $1`
@@ -45,8 +41,7 @@ async function buscarTreinoAluno(idAluno) {
 }
 
 async function buscarTreinoTipo(tipo) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM treino WHERE tipo = $1`
@@ -59,8 +54,7 @@ async function buscarTreinoTipo(tipo) {
 }
 
 async function atualizarTreino(id, treino) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `UPDATE treino SET obs      = $1,
@@ -79,8 +73,7 @@ async function atualizarTreino(id, treino) {
 }
 
 async function deletarTreino(id) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `DELETE FROM treino WHERE id = $1 RETURNING *`

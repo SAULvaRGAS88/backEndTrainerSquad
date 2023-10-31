@@ -1,21 +1,19 @@
-const { Client } = require('pg')
-const { conexao } = require('./conexao')
-const { query } = require('express')
+// const { Client } = require('pg')
+// const { conexao } = require('./conexao')
+// const { query } = require('express')
+const connect = require("../db");
 
-// Iniciando CRUD
 
 // Create
 async function addAluno(idUsuario, aluno) {
+    const client = await connect()
     let resAluno
-    const client = new Client(conexao)
-    client.connect()
-
     try {
         await client.query('BEGIN')
 
         const sql = `INSERT INTO aluno(sexo, nome, cpf, dt_nascimento, telefone, email, status, plano, idUsuario)
                                 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`
-        const values = [aluno.sexo, aluno.nome, aluno.cpf, aluno.dt_nascimento, aluno.telefone, aluno.email, aluno.status, 
+        const values = [aluno.sexo, aluno.nome, aluno.cpf, aluno.dt_nascimento, aluno.telefone, aluno.email, "Ativo", 
                         aluno.plano, idUsuario]       
         resAluno = await client.query(sql, values)                         
 
@@ -36,8 +34,7 @@ async function addAluno(idUsuario, aluno) {
 
 // Read
 async function buscarAluno() {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM aluno`
@@ -49,8 +46,7 @@ async function buscarAluno() {
 }
 
 async function buscarAlunoPorNome(nome) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM aluno WHERE nome = $1`
@@ -63,8 +59,7 @@ async function buscarAlunoPorNome(nome) {
 }
 
 async function buscarAlunoPorEmail(email) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM aluno WHERE email = $1`
@@ -77,8 +72,7 @@ async function buscarAlunoPorEmail(email) {
 }
 
 async function buscarAlunoPorId(id) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM aluno WHERE id = $1`
@@ -91,8 +85,7 @@ async function buscarAlunoPorId(id) {
 }
 
 async function buscarAlunoPorCpf(cpf) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM aluno WHERE cpf = $1`
@@ -107,8 +100,7 @@ async function buscarAlunoPorCpf(cpf) {
 
 // Update
 async function atualizarAluno(id, alunos) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `UPDATE aluno SET sexo          = $1, 
@@ -118,10 +110,10 @@ async function atualizarAluno(id, alunos) {
                                       telefone      = $5, 
                                       email         = $6, 
                                       status        = $7, 
-                                      plano         = $8, 
-                                WHERE id = $10 RETURNING *`
+                                      plano         = $8
+                                WHERE id = $9 RETURNING *`
         const values = [alunos.sexo, alunos.nome, alunos.cpf, alunos.dt_nascimento, alunos.telefone, alunos.email, 
-                        alunos.status, alunos.plano, alunos.idusuario, id]
+                        alunos.status, alunos.plano, id]
         const alunoAtualizado = await client.query(sql, values)
 
         client.end()
@@ -132,8 +124,7 @@ async function atualizarAluno(id, alunos) {
 // Delete
 async function deletarAluno(id) {
     let alunoDeletado
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         await client.query('BEGIN')

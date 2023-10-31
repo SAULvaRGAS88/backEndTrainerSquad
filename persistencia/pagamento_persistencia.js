@@ -1,14 +1,8 @@
-const { Client } = require('pg')
-const { conexao } = require('./conexao')
-
-// Iniciando CRUD
+const connect = require("../db");
 
 // Create
-// PAGAMENTOS
-
 async function addPagamento(idAluno, pagamento) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `INSERT INTO pagamento(id_aluno, dt_pagamento, status, valor) 
@@ -24,8 +18,7 @@ async function addPagamento(idAluno, pagamento) {
 
 // Read
 async function buscarPagamento() {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM pagamento`
@@ -37,8 +30,7 @@ async function buscarPagamento() {
 }
 
 async function buscarPagamentoPorId(id) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT * FROM pagamento WHERE id = $1`
@@ -52,12 +44,11 @@ async function buscarPagamentoPorId(id) {
 
 // Update
 async function atualizarPagamento(id, pagamentos) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
-        const sql = `UPDATE pagamento SET dt_pagamento = $2, status = $3, valor = $4 WHERE id = $5 RETURNING *`
-        const values = [pagamentos.id_aluno, pagamentos.dt_pagamento, pagamentos.status, pagamentos.valor, id]
+        const sql = `UPDATE pagamento SET dt_pagamento = $1, status = $2, valor = $3 WHERE id = $4 RETURNING *`
+        const values = [pagamentos.dt_pagamento, pagamentos.status, pagamentos.valor, id]
         const pagamentoAtualizado = await client.query(sql, values)
 
         client.end()
@@ -67,8 +58,7 @@ async function atualizarPagamento(id, pagamentos) {
 
 // Delete
 async function deletarPagamento(id) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `DELETE FROM pagamento WHERE id = $1 RETURNING *`
