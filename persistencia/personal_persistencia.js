@@ -1,6 +1,14 @@
-const { pool } = require('./conexao')
-const { conexao } = require('./conexao')
+const connect = require("../db");
 
+async function selecionarUsuarios(){
+
+    const client = await connect() // inicia a conexão com base na função inicial "async function connect()"
+    const res = await client.query("SELECT * FROM usuario") // linha responsável por executar comandos sql no banco
+    return res.rows // res= resposta  rows = linhas retornadas 
+}
+ 
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 async function addUsuario(usuario) {
 
     const client = await pool.connect()
@@ -110,5 +118,6 @@ module.exports = {
     buscarUsuarioPorEmail,
     buscarUsuarioPorId,
     atualizarUsuario,
-    deletarUsuario
+    deletarUsuario,
+    selecionarUsuarios
 }
