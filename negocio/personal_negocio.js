@@ -29,9 +29,9 @@ async function addUsuario(usuarios) {
 }
 
 // Read
-async function selecionarUsuarios() {
+async function buscarUsuario() {
     try {
-        const usuario = await persistencia.selecionarUsuarios()
+        const usuario = await persistencia.buscarUsuario()
 
         if (usuario.length == 0) {
             const erro = new Error()
@@ -130,7 +130,7 @@ async function deletarUsuario(id) {
 
 module.exports = {
     addUsuario,
-    selecionarUsuarios,
+    buscarUsuario,
     buscarUsuarioPorNome,
     buscarUsuarioPorEmail,
     buscarUsuarioPorId,
