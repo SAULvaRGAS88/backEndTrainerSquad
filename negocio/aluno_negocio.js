@@ -13,6 +13,7 @@ async function addAluno(idUsuario, aluno) {
                     const alunoAdd = await persistencia.addAluno(idUsuario, aluno)
                     return alunoAdd                    
                 } catch (error) { throw  error }
+           
         } else { throw { id: 402, mensagem: "Aluno já cadastrado!"} }
     } else {
             const erro = new Error()
@@ -21,6 +22,7 @@ async function addAluno(idUsuario, aluno) {
             throw erro
         }
 }
+
 
 // Read
 async function buscarAluno() {
