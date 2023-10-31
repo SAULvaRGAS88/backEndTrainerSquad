@@ -23,7 +23,7 @@ async function buscarUsuario(req, res) {
     const usuario = req.body
 
     try {
-        const usuarios = await negocio.selecionarUsuarios(usuario)
+        const usuarios = await negocio.buscarUsuario(usuario)
         res.status(200).json(usuarios)
     } catch (error) {
         if (error.status) {
