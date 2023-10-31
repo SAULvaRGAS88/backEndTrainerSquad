@@ -21,11 +21,7 @@ VALUES('F', 'Aluno 1', '11122233344', '09/10/2000', '91111-2222', 'aluno1@email.
 CREATE TABLE pagamento 
 ( id serial PRIMARY KEY,
  id_aluno INT,  
-<<<<<<< HEAD
- dt_pagamento Date NOT NULL,    
-=======
  dt_pagamento DATE NOT NULL,    
->>>>>>> devPaola
  status VARCHAR(30) NOT NULL,  
  valor FLOAT NOT NULL
 );

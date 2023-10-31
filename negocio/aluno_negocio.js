@@ -16,11 +16,6 @@ async function addAluno(idUsuario, aluno) {
                     const alunoAdd = await persistencia.addAluno(idUsuario, aluno)
                     return alunoAdd                    
                 } catch (error) { throw  error }
-<<<<<<< HEAD
-           
-        } else { throw { id: 402, mensagem: "Aluno já cadastrado!"} }
-=======
->>>>>>> devPaola
     } else {
             const erro = new Error()
             erro.message = "Todos os campos são obrigatórios."

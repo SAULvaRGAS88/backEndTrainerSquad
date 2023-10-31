@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-// const { Client } = require('pg')
-// const { conexao } = require('./conexao')
 const connect = require("../db");
-
-=======
-const connect = require("../db");
->>>>>>> devPaola
 
 // Create
 async function addPagamento(idAluno, pagamento) {

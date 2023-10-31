@@ -15,11 +15,7 @@ async function addAluno(req, res) {
         if (error.status) {
             res.status(error.status).json(error)
         } else {
-<<<<<<< HEAD
-            res.status(402).json({message: "Erro interno!"})
-=======
             res.status(500).json({message: "Erro interno!"})
->>>>>>> devPaola
         }
     }
 }

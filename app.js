@@ -1,14 +1,6 @@
 const express = require('express')
 const cors = require('cors');
 require("dotenv").config()
-<<<<<<< HEAD
-const rotaAluno = require('./rota/aluno_rota')
-const rotaPagamento = require('./rota/pagamento_rota')
-const app = express()
-const port = process.env.PORT || 5000;
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-=======
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -20,7 +12,6 @@ const rotaAluno = require('./rota/aluno_rota')
 const rotaPagamento = require('./rota/pagamento_rota')
 
 
->>>>>>> devPaola
 app.use((_req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, PATCH, GET, DELETE, OPTIONS');
