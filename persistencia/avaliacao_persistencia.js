@@ -1,9 +1,9 @@
-const { Client } = require('pg')
-const { conexao } = require('./conexao')
+// const { Client } = require('pg')
+// const { conexao } = require('./conexao')
+const connect = require("../db");
 
 async function addAval(idAluno, aval) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `INSERT INTO avaliacao(qtd, peso, altura, nome, dt_aval, sexo, idade, circ_punho, circ_abd,
@@ -22,8 +22,7 @@ async function addAval(idAluno, aval) {
 }
 
 async function buscarAvaliacoes() {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
     
     try {
         const sql = `SELECT * FROM avaliacao ORDER BY id`
@@ -35,8 +34,7 @@ async function buscarAvaliacoes() {
 }
 
 async function buscarAvaliacoesAluno(idAluno) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `SELECT aluno.nome, avaliacao.* FROM avaliacao INNER JOIN aluno ON aluno.id = avaliacao.idAluno WHERE avaliacao.idAluno = $1`
@@ -49,8 +47,7 @@ async function buscarAvaliacoesAluno(idAluno) {
 }
 
 async function atualizarAvaliacao(id, aval) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `UPDATE avaliacao SET peso              = $1,
@@ -82,8 +79,7 @@ async function atualizarAvaliacao(id, aval) {
 }
 
 async function deletarAvaliacao(id) {
-    const client = new Client(conexao)
-    client.connect()
+    const client = await connect()
 
     try {
         const sql = `DELETE FROM avaliacao WHERE id = $1 RETURNING *`
