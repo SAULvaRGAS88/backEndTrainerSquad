@@ -1,15 +1,6 @@
 const connect = require("../db");
 
-// async function selecionarUsuarios(){
-
-//     const client = await connect() // inicia a conexão com base na função inicial "async function connect()"
-//     const res = await client.query("SELECT * FROM usuario") // linha responsável por executar comandos sql no banco
-//     return res.rows // res= resposta  rows = linhas retornadas 
-// }
- 
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+// Create
 async function addUsuario(usuario) {
     const client = await connect()
    
@@ -18,8 +9,9 @@ async function addUsuario(usuario) {
         const values = [usuario.nome, usuario.email, usuario.senha]
         const usuarios = await client.query(sql, values)
 
-      console.log("teste", usuarios.rows[0])  
-      client.release()
+        // console.log("teste", usuarios.rows[0])  
+        client.release()
+        return usuarios.rows[0]
 
     } catch (error) { throw error }
 }

@@ -9,7 +9,6 @@ async function addAval(idAluno, aval) {
                 return avaliacao
             } catch (error) { throw error }
         } else {
-            console.log("Campos ausentes no corpo da solicitação:", Object.keys(aval).filter(key => !aval[key]));
             const erro = new Error()
             erro.message = "Todos os campos são obrigatórios."
             erro.status = 400
@@ -36,7 +35,7 @@ async function buscarAvaliacoesAluno(idAluno) {
     try {
         const avaliacaoAluno = await persistencia.buscarAvaliacoesAluno(idAluno)
 
-        if (!avaliacaoAluno) {
+        if (avaliacaoAluno.length == 0) {
             const erro = new Error()
             erro.message = "Avaliação não encontrada."
             erro.status = 404

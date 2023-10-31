@@ -1,5 +1,3 @@
-// const { Client } = require('pg')
-// const { conexao } = require('./conexao')
 const connect = require("../db");
 
 async function addAval(idAluno, aval) {

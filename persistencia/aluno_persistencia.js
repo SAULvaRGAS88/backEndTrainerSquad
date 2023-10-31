@@ -13,7 +13,7 @@ async function addAluno(idUsuario, aluno) {
 
         const sql = `INSERT INTO aluno(sexo, nome, cpf, dt_nascimento, telefone, email, status, plano, idUsuario)
                                 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`
-        const values = [aluno.sexo, aluno.nome, aluno.cpf, aluno.dt_nascimento, aluno.telefone, aluno.email, aluno.status, 
+        const values = [aluno.sexo, aluno.nome, aluno.cpf, aluno.dt_nascimento, aluno.telefone, aluno.email, "Ativo", 
                         aluno.plano, idUsuario]       
         resAluno = await client.query(sql, values)                         
 
@@ -110,10 +110,10 @@ async function atualizarAluno(id, alunos) {
                                       telefone      = $5, 
                                       email         = $6, 
                                       status        = $7, 
-                                      plano         = $8, 
-                                WHERE id = $10 RETURNING *`
+                                      plano         = $8
+                                WHERE id = $9 RETURNING *`
         const values = [alunos.sexo, alunos.nome, alunos.cpf, alunos.dt_nascimento, alunos.telefone, alunos.email, 
-                        alunos.status, alunos.plano, alunos.idusuario, id]
+                        alunos.status, alunos.plano, id]
         const alunoAtualizado = await client.query(sql, values)
 
         client.end()

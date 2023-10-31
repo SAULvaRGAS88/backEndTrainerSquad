@@ -1,11 +1,6 @@
-// const { Client } = require('pg')
-// const { conexao } = require('./conexao')
 const connect = require("../db");
 
-
 // Create
-// PAGAMENTOS
-
 async function addPagamento(idAluno, pagamento) {
     const client = await connect()
 
@@ -52,8 +47,8 @@ async function atualizarPagamento(id, pagamentos) {
     const client = await connect()
 
     try {
-        const sql = `UPDATE pagamento SET dt_pagamento = $2, status = $3, valor = $4 WHERE id = $5 RETURNING *`
-        const values = [pagamentos.id_aluno, pagamentos.dt_pagamento, pagamentos.status, pagamentos.valor, id]
+        const sql = `UPDATE pagamento SET dt_pagamento = $1, status = $2, valor = $3 WHERE id = $4 RETURNING *`
+        const values = [pagamentos.dt_pagamento, pagamentos.status, pagamentos.valor, id]
         const pagamentoAtualizado = await client.query(sql, values)
 
         client.end()

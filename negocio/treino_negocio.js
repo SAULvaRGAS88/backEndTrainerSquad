@@ -33,7 +33,7 @@ async function buscarTreinoAluno(idAluno) {
     try {
         const treinoAluno = await persistencia.buscarTreinoAluno(idAluno)
 
-        if (!treinoAluno) {
+        if (treinoAluno.length == 0) {
             const erro = new Error()
             erro.message = "Treino não encontrado."
             erro.status = 404
@@ -48,7 +48,7 @@ async function buscarTreinoTipo(tipo) {
     try {
         const tipos = await persistencia.buscarTreinoTipo(tipo)
 
-        if (!tipos) {
+        if (tipos.length == 0) {
             const erro = new Error()
             erro.message = "Tipo de treino não encontrado."
             erro.status = 404
