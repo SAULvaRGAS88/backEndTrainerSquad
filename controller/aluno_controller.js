@@ -15,7 +15,7 @@ async function addAluno(req, res) {
         if (error.status) {
             res.status(error.status).json(error)
         } else {
-            res.status(402).json({message: "Aluno já cadastrado Anteriormente!"})
+            res.status(402).json({message: "Erro interno!"})
         }
     }
 }
