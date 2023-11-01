@@ -3,7 +3,7 @@ const cors = require('cors');
 require("dotenv").config()
 
 const app = express()
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 const rotaPersonal = require('./rota/personal_rota')
 const rotaTreino = require('./rota/treino_rota')
