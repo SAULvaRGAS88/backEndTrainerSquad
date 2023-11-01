@@ -26,12 +26,12 @@ app.get("/", (req, res) => {
         message: "Funcionanso, PUM!!!!!!!!!!!!!!!!!!!!!!!"
     })
 })
-app.get("/dashboard", (req, res) => {
-    console.log('Recebida solicitação GET para /dashboard');
-    res.json({
-        message: "dashboard"
-    })
-  });
+// app.get("/dashboard", (req, res) => {
+//     console.log('Recebida solicitação GET para /dashboard');
+//     res.json({
+//         message: "dashboard"
+//     })
+//   });
 
 app.use(cors());
 app.use(express.json());
