@@ -12,6 +12,7 @@ async function addTreino(req, res) {
             res.status(error.status).json(error)
         } else {
             res.status(500).json({message: "Erro interno!"})
+            console.log(error)
         }
     }
 }

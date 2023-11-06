@@ -1,10 +1,15 @@
-const persistencia = require('../persistencia/aluno_persistencia')
+const persistencia = require('../persistencia/aluno_persistencia');
+const { buscarUsuarioPorId } = require('../persistencia/personal_persistencia');
 
 // Iniciando CRUD
 
 // Create
 
 async function addAluno(idUsuario, aluno) {
+    const id = await buscarUsuarioPorId(idUsuario)
+    if (!id) {
+        throw ({status: 404, message: "Personal não encontrado"})        
+    }
     const alunoBuscadoPorCpf = await persistencia.buscarAlunoPorCpf(aluno.cpf);
     if (alunoBuscadoPorCpf) {
         throw ({status: 400, message: "Aluno já cadastrado"})

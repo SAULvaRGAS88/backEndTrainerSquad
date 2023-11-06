@@ -1,6 +1,12 @@
+const { buscarAlunoPorId } = require('../persistencia/aluno_persistencia')
 const persistencia = require('../persistencia/treino_persistencia')
 
 async function addTreino(idAluno, treino) {
+    const id = await buscarAlunoPorId(idAluno)
+
+    if (!id) {
+        throw ({status: 404, message: "Não existe este aluno"})
+    }
     if (treino && treino.carga && treino.serie && treino.exercicio && treino.tipo && treino.repeticao && idAluno) {
         try {
             const treinos = await persistencia.addTreino(idAluno, treino)
