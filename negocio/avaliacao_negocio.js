@@ -6,9 +6,9 @@ async function addAval(idAluno, aval) {
     if (!id) {
         throw ({status: 404, message: "ID do aluno não existe"})
     }
-    if (aval && aval.peso && aval.altura && aval.nome && aval.dt_aval && aval.sexo && aval.idade && aval.circ_punho
-        && aval.circ_abd && aval.circ_gluteo && aval.porc_gordura && aval.massa_gordura && aval.massa_magra && aval.porc_massa_musc
-        && aval.massa_muscu && aval.ingestao_calorica && aval.taxa_metabolica && aval.diferenca && idAluno) {
+    if (aval && aval.objetivo && aval.peso && aval.altura && aval.imc && aval.idade && aval.sexo && aval.circ_punho
+        && aval.circ_abd && aval.circ_gluteo && aval.massa_gordura && aval.porc_gordura && aval.massa_magra && aval.porc_massa_musc
+        && aval.massa_musc && idAluno) {
             try {
                 const avaliacao = await persistencia.addAval(idAluno, aval)
                 return avaliacao
