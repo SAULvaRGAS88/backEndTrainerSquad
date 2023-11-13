@@ -1,4 +1,5 @@
 const negocio = require('../negocio/aluno_negocio')
+const { buscarUsuarioPorId } = require('../negocio/personal_negocio');
 
 // Iniciando CRUD
 
@@ -130,6 +131,21 @@ async function deletarAluno(req, res) {
     }
 }
 
+async function buscarAlunoPersonal(req, res) {
+    const id = req.params.id
+
+    try {
+        const idAluno = await negocio.buscarAlunoPersonal(id)
+        res.status(200).json(idAluno)
+    } catch (error) {
+        if (error.status) {
+            res.status(error.status).json(error)
+        } else {
+            res.status(500).json({message: "Erro interno!"}) 
+        }
+    }
+}
+
 module.exports = {
     addAluno,
     buscarAluno,
@@ -138,5 +154,6 @@ module.exports = {
     buscarAlunoPorId,
     buscarAlunoPorCpf,
     atualizarAluno,
-    deletarAluno
+    deletarAluno,
+    buscarAlunoPersonal
 }

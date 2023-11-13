@@ -58,7 +58,7 @@ async function buscarAlunoPorNome(nome) {
         }
 
         return nomeAluno
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 async function buscarAlunoPorEmail(email) {
@@ -73,7 +73,7 @@ async function buscarAlunoPorEmail(email) {
         }
 
         return emailAluno
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 async function buscarAlunoPorId(id) {
@@ -88,7 +88,7 @@ async function buscarAlunoPorId(id) {
         }
 
         return idAluno
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 async function buscarAlunoPorCpf(cpf) {
@@ -103,7 +103,7 @@ async function buscarAlunoPorCpf(cpf) {
         }
 
         return cpfAluno
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 // Update
@@ -144,6 +144,22 @@ async function deletarAluno(id) {
     } catch (error) { throw error }
 }
 
+async function buscarAlunoPersonal(idUsuario) {
+    try {
+        const alunos = await persistencia.buscarAlunoPersonal(idUsuario)
+
+        if (!alunos.length) {
+            const erro = new Error()
+            erro.message = "Aluno não encontrado."
+            erro.status = 404
+            throw erro
+        }
+
+        return alunos
+    } catch (error) { 
+        console.error('Erro na busca do aluno personal:', error);
+        throw error }
+}
 module.exports = {
     addAluno,
     buscarAluno,
@@ -152,5 +168,6 @@ module.exports = {
     buscarAlunoPorId,
     buscarAlunoPorCpf,
     atualizarAluno,
-    deletarAluno
+    deletarAluno,
+    buscarAlunoPersonal
 }

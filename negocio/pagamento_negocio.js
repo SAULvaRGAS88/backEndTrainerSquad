@@ -55,7 +55,7 @@ async function buscarPagamentoPorId(id) {
         }
 
         return idPagamento
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 // Update

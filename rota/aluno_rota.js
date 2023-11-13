@@ -9,6 +9,7 @@ router.get('/alunos', controller.buscarAluno) // listar
 router.get('/nome/:nome', controller.buscarAlunoPorNome)
 router.get('/email/:email', controller.buscarAlunoPorEmail)
 router.get('/:id', controller.buscarAlunoPorId)
+router.get('/:id/aluno', controller.buscarAlunoPersonal)
 router.get('/cpf/:cpf', controller.buscarAlunoPorCpf)
 router.put('/:id', controller.atualizarAluno)
 router.delete('/:id', controller.deletarAluno)

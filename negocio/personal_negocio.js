@@ -56,7 +56,7 @@ async function buscarUsuarioPorNome(nome) {
         }
 
         return nomeUsuario
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 async function buscarUsuarioPorEmail(email) {
@@ -71,7 +71,7 @@ async function buscarUsuarioPorEmail(email) {
         }
 
         return emailUsuario
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 async function buscarUsuarioPorId(id) {
@@ -86,7 +86,7 @@ async function buscarUsuarioPorId(id) {
         }
 
         return idUsuario
-    } catch { throw error }
+    } catch (error) { throw error }
 }
 
 // Update

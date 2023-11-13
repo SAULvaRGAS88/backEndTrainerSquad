@@ -154,7 +154,18 @@ async function deletarAluno(id) {
     } finally { client.end() }
 }
 
-
+async function buscarAlunoPersonal(idUsuario) {
+    const client = await connect()
+    
+    try {
+        const sql = `SELECT * FROM aluno WHERE idUsuario = $1`
+        const value = [idUsuario]
+        const alunoPersonal = await client.query(sql, value)
+        
+        client.end()
+        return alunoPersonal.rows
+    } catch (error) { throw error }
+}
 
 module.exports = {
     addAluno,
@@ -165,5 +176,5 @@ module.exports = {
     buscarAlunoPorCpf,
     atualizarAluno,
     deletarAluno,
-
+    buscarAlunoPersonal
 }
