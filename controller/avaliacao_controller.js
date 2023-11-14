@@ -34,10 +34,10 @@ async function buscarAvaliacoes(req, res) {
 }
 
 async function buscarAvaliacoesAluno(req, res) {
-    const idAluno = req.params.id
+    const idUsuario = req.params.id
 
     try {
-        const avaliacao = await negocio.buscarAvaliacoesAluno(idAluno)
+        const avaliacao = await negocio.buscarAvaliacoesAluno(idUsuario)
         res.status(200).json(avaliacao)
     } catch (error) {
         if (error.status) {
