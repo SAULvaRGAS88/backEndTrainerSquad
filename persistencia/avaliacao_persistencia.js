@@ -32,33 +32,35 @@ async function buscarAvaliacoes() {
     } catch (error) { throw error }
 }
 
-// async function buscarAvaliacoesAluno(idAluno) {
-//     const client = await connect()
-
-//     try {
-//         const sql = `SELECT aluno.nome, avaliacao.* FROM avaliacao INNER JOIN aluno ON aluno.id = avaliacao.idAluno WHERE avaliacao.idAluno = $1`
-//         const values = [idAluno]
-//         const treinoAluno = await client.query(sql, values)
-
-//         await client.end()
-//         return treinoAluno.rows
-//     } catch (error) { throw error }
-// }
-
-async function buscarAvaliacoesAluno(idUsuario) {
+async function buscarAvaliacoesAluno(idAluno) {
     const client = await connect()
 
     try {
         const sql = `SELECT aluno.nome, avaliacao.* FROM avaliacao 
                      INNER JOIN aluno ON aluno.id = avaliacao.idAluno 
-                     WHERE aluno.idUsuario = $1`
-        const values = [idUsuario]
+                     WHERE avaliacao.idAluno = $1`
+        const values = [idAluno]
         const treinoAluno = await client.query(sql, values)
 
         await client.end()
         return treinoAluno.rows
     } catch (error) { throw error }
 }
+
+// async function buscarAvaliacoesAluno(idUsuario) {
+//     const client = await connect()
+
+//     try {
+//         const sql = `SELECT aluno.nome, avaliacao.* FROM avaliacao 
+//                      INNER JOIN aluno ON aluno.id = avaliacao.idAluno 
+//                      WHERE aluno.idUsuario = $1`
+//         const values = [idUsuario]
+//         const treinoAluno = await client.query(sql, values)
+
+//         await client.end()
+//         return treinoAluno.rows
+//     } catch (error) { throw error }
+// }
 
 async function atualizarAvaliacao(id, aval) {
     const client = await connect()

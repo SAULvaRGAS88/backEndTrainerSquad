@@ -36,9 +36,9 @@ async function buscarAvaliacoes() {
     } catch (error) { throw error }
 }
 
-async function buscarAvaliacoesAluno(idUsuario) {
+async function buscarAvaliacoesAluno(idAluno) {
     try {
-        const avaliacaoAluno = await persistencia.buscarAvaliacoesAluno(idUsuario)
+        const avaliacaoAluno = await persistencia.buscarAvaliacoesAluno(idAluno)
 
         if (avaliacaoAluno.length == 0) {
             const erro = new Error()
