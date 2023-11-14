@@ -156,10 +156,24 @@ async function buscarAlunoPersonal(idUsuario) {
         }
 
         return alunos
-    } catch (error) { 
-        console.error('Erro na busca do aluno personal:', error);
-        throw error }
+    } catch (error) { throw error }
 }
+
+async function buscarAlunoPagamento(idUsuario) {
+    try {
+        const alunos = await persistencia.buscarAlunoPagamento(idUsuario)
+
+        if (!alunos.length) {
+            const erro = new Error()
+            erro.message = "Aluno não encontrado."
+            erro.status = 404
+            throw erro
+        }
+
+        return alunos
+    } catch (error) { throw error }
+}
+
 module.exports = {
     addAluno,
     buscarAluno,
@@ -169,5 +183,6 @@ module.exports = {
     buscarAlunoPorCpf,
     atualizarAluno,
     deletarAluno,
-    buscarAlunoPersonal
+    buscarAlunoPersonal,
+    buscarAlunoPagamento
 }

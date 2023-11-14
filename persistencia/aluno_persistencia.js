@@ -167,6 +167,21 @@ async function buscarAlunoPersonal(idUsuario) {
     } catch (error) { throw error }
 }
 
+async function buscarAlunoPagamento(idUsuario) {
+    const client = await connect()
+    
+    try {
+        const sql = `SELECT pag.id, pag.dt_pagamento, pag.status, pag.valor FROM pagamento AS pag
+                     INNER JOIN aluno ON aluno.id = pag.id_aluno
+                     WHERE aluno.idUsuario = $1 ORDER BY pag.id`
+        const value = [idUsuario]
+        const alunoPersonal = await client.query(sql, value)
+        
+        client.end()
+        return alunoPersonal.rows
+    } catch (error) { throw error }
+}
+
 module.exports = {
     addAluno,
     buscarAluno,
@@ -176,5 +191,6 @@ module.exports = {
     buscarAlunoPorCpf,
     atualizarAluno,
     deletarAluno,
-    buscarAlunoPersonal
+    buscarAlunoPersonal,
+    buscarAlunoPagamento
 }

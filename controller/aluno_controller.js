@@ -146,6 +146,21 @@ async function buscarAlunoPersonal(req, res) {
     }
 }
 
+async function buscarAlunoPagamento(req, res) {
+    const alunos = req.params.id
+
+    try {
+        const idAluno = await negocio.buscarAlunoPagamento(alunos)
+        res.status(200).json(idAluno)
+    } catch (error) {
+        if (error.status) {
+            res.status(error.status).json(error)
+        } else {
+            res.status(500).json({message: "Erro interno!"}) 
+        }
+    }
+}
+
 module.exports = {
     addAluno,
     buscarAluno,
@@ -155,5 +170,6 @@ module.exports = {
     buscarAlunoPorCpf,
     atualizarAluno,
     deletarAluno,
-    buscarAlunoPersonal
+    buscarAlunoPersonal,
+    buscarAlunoPagamento
 }
