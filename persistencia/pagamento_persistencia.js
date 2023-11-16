@@ -33,7 +33,7 @@ async function buscarPagamentoPorId(id) {
     const client = await connect()
 
     try {
-        const sql = `SELECT * FROM pagamento WHERE id = $1`
+        const sql = `SELECT * FROM pagamento WHERE id_aluno = $1`
         const values = [id]
         const idPagamento = await client.query(sql, values)
 
