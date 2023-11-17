@@ -158,7 +158,7 @@ async function buscarAlunoPersonal(idUsuario) {
     const client = await connect()
     
     try {
-        const sql = `SELECT * FROM aluno WHERE idUsuario = $1 ORDER BY id`
+        const sql = `SELECT * FROM aluno WHERE idUsuario = $1`
         const value = [idUsuario]
         const alunoPersonal = await client.query(sql, value)
         
