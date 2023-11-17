@@ -47,7 +47,7 @@ async function atualizarPagamento(id, pagamentos) {
     const client = await connect()
 
     try {
-        const sql = `UPDATE pagamento SET dt_pagamento = $1, status = $2, valor = $3 WHERE id = $4 RETURNING *`
+        const sql = `UPDATE pagamento SET dt_pagamento = $1, status = $2, valor = $3 WHERE id_aluno = $4 RETURNING *`
         const values = [pagamentos.dt_pagamento, pagamentos.status, pagamentos.valor, id]
         const pagamentoAtualizado = await client.query(sql, values)
 
