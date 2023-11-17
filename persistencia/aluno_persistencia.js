@@ -158,7 +158,7 @@ async function buscarAlunoPersonal(idUsuario) {
     const client = await connect()
     
     try {
-        const sql = `SELECT * FROM aluno WHERE idUsuario = $1`
+        const sql = `SELECT * FROM aluno WHERE idUsuario = $1 ORDER BY id`
         const value = [idUsuario]
         const alunoPersonal = await client.query(sql, value)
         
@@ -171,9 +171,9 @@ async function buscarAlunoPagamento(idUsuario) {
     const client = await connect()
     
     try {
-        const sql = `SELECT pag.id, pag.dt_pagamento, pag.status, pag.valor FROM pagamento AS pag
+        const sql = `SELECT aluno.id, pag.id, pag.dt_pagamento, pag.status, pag.valor FROM pagamento AS pag
                      INNER JOIN aluno ON aluno.id = pag.id_aluno
-                     WHERE aluno.idUsuario = $1 ORDER BY pag.id`
+                     WHERE aluno.idUsuario = $1 ORDER BY pag.id_aluno`
         const value = [idUsuario]
         const alunoPersonal = await client.query(sql, value)
         
