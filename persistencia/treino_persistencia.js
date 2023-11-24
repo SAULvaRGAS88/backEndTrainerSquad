@@ -31,8 +31,24 @@ async function buscarTreinoAluno(idAluno) {
     const client = await connect()
 
     try {
-        const sql = `SELECT aluno.nome, treino.* FROM treino INNER JOIN aluno ON aluno.id = treino.idAluno WHERE treino.idAluno = $1`
+        const sql = `SELECT aluno.nome, treino.* FROM treino INNER JOIN aluno ON aluno.id = treino.idAluno 
+                     WHERE treino.idAluno = $1`
         const values = [idAluno]
+        const treinoAluno = await client.query(sql, values)
+
+        await client.end()
+        return treinoAluno.rows
+    } catch (error) { throw error }
+}
+
+async function buscarTreinoAlunoTipo(idAluno, tipo) {
+    const client = await connect()
+
+    try {
+        const sql = `SELECT aluno.nome, treino.* FROM treino INNER JOIN aluno ON aluno.id = treino.idAluno 
+                     WHERE treino.idAluno = $1
+                       AND treino.tipo = $2`
+        const values = [idAluno, tipo]
         const treinoAluno = await client.query(sql, values)
 
         await client.end()
@@ -89,6 +105,7 @@ module.exports = {
     addTreino,
     buscarTreino,
     buscarTreinoAluno,
+    buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
     deletarTreino

@@ -50,6 +50,21 @@ async function buscarTreinoAluno(idAluno) {
     } catch (error) { throw error }
 }
 
+async function buscarTreinoAlunoTipo(idAluno, tipo) {
+    try {
+        const treinoAluno = await persistencia.buscarTreinoAlunoTipo(idAluno, tipo)
+
+        if (treinoAluno.length == 0) {
+            const erro = new Error()
+            erro.message = "Treino não encontrado."
+            erro.status = 404
+            throw erro
+        }
+
+        return treinoAluno
+    } catch (error) { throw error }
+}
+
 async function buscarTreinoTipo(tipo) {
     try {
         const tipos = await persistencia.buscarTreinoTipo(tipo)
@@ -104,6 +119,7 @@ module.exports = {
     addTreino,
     buscarTreino,
     buscarTreinoAluno,
+    buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
     deletarTreino

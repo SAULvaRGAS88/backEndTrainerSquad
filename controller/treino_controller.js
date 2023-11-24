@@ -47,6 +47,22 @@ async function buscarTreinoAluno(req, res) {
     }
 }
 
+async function buscarTreinoAlunoTipo(req, res) {
+    const idAluno = req.params.id
+    const tipo = req.params.tipo
+
+    try {
+        const treinos = await negocio.buscarTreinoAlunoTipo(idAluno, tipo)
+        res.status(200).json(treinos)
+    } catch (error) {
+        if (error.status) {
+            res.status(error.status).json(error)
+        } else {
+            res.status(500).json({message: "Erro interno!"})
+        }
+    }
+}
+
 async function buscarTreinoTipo(req, res) {
     const tipoTreino = req.params.tipo
 
@@ -99,6 +115,7 @@ module.exports = {
     addTreino,
     buscarTreino,
     buscarTreinoAluno,
+    buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
     deletarTreino
