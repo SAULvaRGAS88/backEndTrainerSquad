@@ -111,6 +111,23 @@ async function deletarTreino(req, res) {
     }
 }
 
+async function deletarTreinoTipo(req, res) {
+    const tipo = req.params.tipo
+    const id = req.params.id
+
+    try {
+        const treinoDeletado = await negocio.deletarTreinoTipo(id, tipo)
+        res.status(200).json(treinoDeletado)
+    } catch (error) {
+        if (error.status) {
+            res.status(error.status).json(error)
+        } else {
+            console.log(error)
+            res.status(500).json({message: "Erro interno!"})
+        }
+    }
+}
+
 module.exports = {
     addTreino,
     buscarTreino,
@@ -118,5 +135,6 @@ module.exports = {
     buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
-    deletarTreino
+    deletarTreino,
+    deletarTreinoTipo
 }

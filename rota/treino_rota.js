@@ -10,5 +10,6 @@ router.get('/:id/:tipo', controller.buscarTreinoAlunoTipo)
 router.get('/tipo/:tipo', controller.buscarTreinoTipo)
 router.put('/:id', controller.atualizarTreino)
 router.delete('/:id', controller.deletarTreino)
+router.delete('/:id/:tipo', controller.deletarTreinoTipo)
 
 module.exports = router

@@ -115,6 +115,21 @@ async function deletarTreino(id) {
     } catch (error) { throw error }
 }
 
+async function deletarTreinoTipo(id, tipo) {
+    try {
+        const treinoDeletado = await persistencia.deletarTreinoTipo(id, tipo)
+
+        if (!treinoDeletado) {
+            let erro = new Error()
+            erro.message = "Treino não encontrado."
+            erro.status = 404
+            throw erro 
+        }
+
+        return treinoDeletado
+    } catch (error) { throw error }
+}
+
 module.exports = {
     addTreino,
     buscarTreino,
@@ -122,5 +137,6 @@ module.exports = {
     buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
-    deletarTreino
+    deletarTreino,
+    deletarTreinoTipo
 }

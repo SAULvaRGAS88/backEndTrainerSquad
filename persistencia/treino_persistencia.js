@@ -101,6 +101,20 @@ async function deletarTreino(id) {
     } catch (error) { throw error }
 }
 
+async function deletarTreinoTipo(id, tipo) {
+    const client = await connect()
+
+    try {
+        const sql = `DELETE FROM treino WHERE idAluno = $1 
+                                          AND tipo = $2 RETURNING *`
+        const values = [id, tipo]
+        const treinoDeletado = await client.query(sql, values)
+
+        await client.end()
+        return treinoDeletado.rows[0]
+    } catch (error) { throw error }
+}
+
 module.exports = {
     addTreino,
     buscarTreino,
@@ -108,5 +122,6 @@ module.exports = {
     buscarTreinoAlunoTipo,
     buscarTreinoTipo,
     atualizarTreino,
-    deletarTreino
+    deletarTreino,
+    deletarTreinoTipo
 }
