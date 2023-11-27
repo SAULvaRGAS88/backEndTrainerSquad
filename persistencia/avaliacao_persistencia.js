@@ -36,9 +36,15 @@ async function buscarAvaliacoesAluno(idAluno) {
     const client = await connect()
 
     try {
-        const sql = `SELECT aluno.nome, avaliacao.* FROM avaliacao 
-                     INNER JOIN aluno ON aluno.id = avaliacao.idAluno 
-                     WHERE avaliacao.idAluno = $1`
+        const sql = `SELECT aluno.nome,
+                     aval.objetivo, aval.data, aval.peso, aval.altura, aval.imc,
+                     aval.idade, 
+                     aluno.sexo,
+                     aval.circ_punho, aval.circ_abd, aval.circ_gluteo, aval.massa_gordura,
+                     aval.porc_gordura, aval.massa_magra, aval.porc_massa_musc,
+                     aval.massa_musc FROM avaliacao AS aval
+                     INNER JOIN aluno ON aluno.id = aval.idAluno 
+                     WHERE aval.idAluno = $1`
         const values = [idAluno]
         const treinoAluno = await client.query(sql, values)
 
