@@ -4,7 +4,6 @@ async function addAval(idAluno, aval) {
     const client = await connect()
 
     try {
-        // const currentDateUTC = new Date().toISOString();
         const sql = `INSERT INTO avaliacao(qtd, objetivo, data, peso, altura, imc, idade, sexo, circ_punho, 
                         circ_abd, circ_gluteo, massa_gordura, porc_gordura, massa_magra, porc_massa_musc,
                         massa_musc, idAluno)

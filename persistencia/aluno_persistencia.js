@@ -140,12 +140,16 @@ async function deletarAluno(id) {
         const valuesAvaliacao = [id]
         const avaliacao = await client.query(sqlAvaliacao, valuesAvaliacao)
 
+        const sqlTarefas = `DELETE FROM tarefas WHERE idAluno = $1 RETURNING *`
+        const valuesTarefas = [id]
+        const tarefas = await client.query(sqlTarefas, valuesTarefas)
+
         const sql = `DELETE FROM aluno WHERE id = $1 RETURNING *`
         const values = [id]
         alunoDeletado = await client.query(sql, values)
 
         await client.query('COMMIT')
-        return { aluno: alunoDeletado.rows[0], pagamento: pag.rows[0], treino: treino.rows[0], avaliacao: avaliacao.rows[0] }
+        return { aluno: alunoDeletado.rows[0], pagamento: pag.rows[0], treino: treino.rows[0], avaliacao: avaliacao.rows[0], tarefas: tarefas.rows[0] }
     } catch (error) {
 
         await client.query('ROLLBACK');
