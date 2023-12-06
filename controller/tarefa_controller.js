@@ -33,6 +33,22 @@ async function buscarTasks(req, res) {
     }
 }
 
+async function buscarTasksPersonal(req, res) {
+    const idUsuario = req.params.id
+
+    try {
+        const tasks = await negocio.buscarTasksPersonal(idUsuario)
+        res.status(200).json(tasks)
+    } catch (error) {
+        if (error.status) {
+            res.status(error.status).json(error)
+        } else {
+            console.log(error)
+            res.status(500).json({message: "Erro interno!"})
+        }
+    }
+}
+
 async function buscarAlunoTask(req, res) {
     const idAluno = req.params.id
 
@@ -150,6 +166,7 @@ async function deletarTask(req, res) {
 module.exports = {
     addTask,
     buscarTasks,
+    buscarTasksPersonal,
     buscarAlunoTask,
     buscarTaskDataAsc,
     buscarTaskDataDesc,

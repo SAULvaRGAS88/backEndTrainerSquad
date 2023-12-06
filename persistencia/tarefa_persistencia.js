@@ -26,6 +26,21 @@ async function buscarTasks() {
     } catch (error) { throw error }
 }
 
+async function buscarTasksPersonal(idUsuario) {
+    const client = await connect()
+
+    try {
+        const sql = `SELECT tarefas.* FROM tarefas
+                     INNER JOIN aluno ON aluno.id = tarefas.idAluno
+                     WHERE aluno.idUsuario = $1`
+        const value = [idUsuario]
+        const allTasks = await client.query(sql, value) 
+        
+        await client.end()
+        return allTasks.rows
+    } catch (error) { throw error }
+}
+
 async function buscarAlunoTask(idAluno) {
     const client = await connect()
 
@@ -119,6 +134,7 @@ async function deletarTask(id) {
 module.exports = {
     addTask,
     buscarTasks,
+    buscarTasksPersonal,
     buscarAlunoTask,
     buscarTaskDataAsc,
     buscarTaskDataDesc,

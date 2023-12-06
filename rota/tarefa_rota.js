@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.post('/:id', controller.addTask)
 router.get('/', controller.buscarTasks)
+router.get('/:id', controller.buscarTasksPersonal)
 router.get('/aluno/:id', controller.buscarAlunoTask)
 router.get('/dateAsc', controller.buscarTaskDataAsc)
 router.get('/dateDesc', controller.buscarTaskDataDesc)

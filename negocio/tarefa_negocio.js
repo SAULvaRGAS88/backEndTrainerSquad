@@ -36,6 +36,21 @@ async function buscarTasks() {
     } catch (error) { throw error }
 }
 
+async function buscarTasksPersonal(idUsuario) {
+    try {
+        const allTasks = await persistencia.buscarTasksPersonal(idUsuario)
+
+        if (!allTasks.length) {
+            const erro = new Error()
+            erro.message = "Não há tarefas cadastradas."
+            erro.status = 404
+            throw erro
+        }
+
+        return allTasks
+    } catch (error) { throw error }
+}
+
 async function buscarAlunoTask(idAluno) {
     try {
         const taskAluno = await persistencia.buscarAlunoTask(idAluno)
@@ -154,6 +169,7 @@ async function deletarTask(id) {
 module.exports = {
     addTask,
     buscarTasks,
+    buscarTasksPersonal,
     buscarAlunoTask,
     buscarTaskDataAsc,
     buscarTaskDataDesc,
