@@ -31,5 +31,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 - Saul Vargas - [https://github.com/SAULvaRGAS88]
 - Paola Fantinel - [https://github.com/fantinels]
 - Sandro Teixeira - [https://github.com/sandro1401]
-- Guilherme Menezes - [Nome do Contribuinte 3]
+- Guilherme Menezes - [https://github.com/Gui-Menezes]
 
