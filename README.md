@@ -18,11 +18,10 @@ Desenvolvido academicamente, para fins de aplicação de uma abordagem em equipe
 - Controle de avaliação física: Registro e acompanhamento de avaliações físicas dos alunos ao longo do tempo.
 - Controle de pagamentos: Registro de pagamentos dos alunos, com opções para visualizar histórico e gerar relatórios.
 - Calendário: Visualização de agendas de treinos e avaliações físicas para personal trainers e alunos.
-- Autenticação JWT (JSON Web Tokens): Para garantir a segurança das rotas protegidas, incluindo acesso às informações confidenciais dos alunos.
 
 ## Deploy no Render
 O deploy desta aplicação foi realizado na plataforma Render. Para fazer o deploy, basta conectar seu repositório Git e configurar as variáveis de ambiente necessárias. A cada novo push no repositório, o Render automaticamente irá construir e implantar a aplicação.
-- Acesso nossa API - [https://api-trainersquad.onrender.com]
+- Acesse nossa API - [https://api-trainersquad.onrender.com]
 
 ## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
