@@ -29,7 +29,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 
 ### Contribuintes:
 - Saul Vargas - [https://github.com/SAULvaRGAS88]
-- Paola Fantinel - [Nome do Contribuinte 2]
+- Paola Fantinel - [https://github.com/fantinels]
 - Sandro Teixeira - [Nome do Contribuinte 3]
 - Guilherme Menezes - [Nome do Contribuinte 3]
 
